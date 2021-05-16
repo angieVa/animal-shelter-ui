@@ -31,6 +31,6 @@ jobs:
     - name: publish contracts
       env:
         PACT_BROKER_BASE_URL: ${{secrets.PACT_BROKER_BASE_URL}}
-        PACT_BROKER_BASE_URL: ${{secrets.PACT_BROKER_TOKEN}}
+        PACT_BROKER_TOKEN: ${{secrets.PACT_BROKER_TOKEN}}
         PACT_CONSUMER_VERSION: ${{secrets.PACT_CONSUMER_VERSION}}
       run: npm run contract:publish 
