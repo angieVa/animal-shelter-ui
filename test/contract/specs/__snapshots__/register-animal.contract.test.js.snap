@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given An Animal service When a request to add a new animal is made Then it should return the right data 1`] = `
+Object {
+  "breed": "Bicolor",
+  "gender": "Male",
+  "name": "Jasper",
+  "vaccinated": true,
+}
+`;

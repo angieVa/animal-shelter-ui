@@ -7,7 +7,7 @@ describe('Given An Animal service', () => {
         beforeAll(async () => {
             await provider.setup();
             await provider.addInteraction({
-                state: 'there are animals',
+                state: 'has animals',
                 uponReceiving: 'a request to get all animals',
                 withRequest: {
                     method: 'GET',
@@ -15,13 +15,14 @@ describe('Given An Animal service', () => {
                 },
                 willRespondWith: {
                     status: 200,
-                    body: Matchers.eachLike({
-                        breed: Matchers.like("Bengali"),
-                        gender: Matchers.term({generate: "Female", matcher: "Female|Male"}),
-                        isVaccinated: Matchers.boolean(true),
+                    body: Matchers.eachLike(
+                        {
                         name: Matchers.string("Manchas"),
-                        vaccines: Matchers.eachLike(["rabia"], {min: 1})
-                    }, {min: 1})
+                        breed: Matchers.like("Bengali"),
+                        gender: Matchers.like("Female"),
+                        vaccinated: Matchers.boolean(true),
+                        }
+                    )
                 }
             });
         });
@@ -29,7 +30,6 @@ describe('Given An Animal service', () => {
         it("Then it should return the right data", async() =>{
             const response = await AnimalController.list();
             expect(response.data).toMatchSnapshot();
-
             await provider.verify();
         });
 
@@ -37,4 +37,4 @@ describe('Given An Animal service', () => {
             await provider.finalize();
         });
     });
-}); 
+});
